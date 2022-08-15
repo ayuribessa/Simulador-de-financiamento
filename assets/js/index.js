@@ -1,4 +1,5 @@
 import { Financiamento } from "./financiamento.js";
+import { FinanciamentoCarencia } from "./financiamentoCarencia.js";
 
 const comCarencia = document.querySelector('#comCarencia');
 const listaSuspensa = document.querySelector('#listSuspensa');
@@ -23,7 +24,14 @@ botaCalcular.addEventListener('click', function () {
     const taxaJuros = parseFloat(textoTaxaJuros.value);
     const Prazo = parseFloat(textoPrazo.value);
     let simulacao;
-    simulacao = new Financiamento(valor, entrada, taxaJuros, Prazo);
+    if (comCarencia.checked) {
+        const carencia = parseInt(listaSuspensa.value);
+        simulacao = new FinanciamentoCarencia(valor, entrada, taxaJuros, Prazo, carencia);
+    }
+    else {
+
+        simulacao = new Financiamento(valor, entrada, taxaJuros, Prazo);
+    }
     simulacao.calcParcelasMensais();
     simulacao.exibeParcelas();
 });

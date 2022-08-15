@@ -26,5 +26,4 @@ export class Parcela {
         dados.push(this.#saldo.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
         return dados;
     }
-
 }
